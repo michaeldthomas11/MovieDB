@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Fabflix - Login</title>
+	<link rel="stylesheet" type="text/css" href="./css/Login.css">
+</head>
+
+<body>
+	<p>Not a customer? <a href="/Fabflix/employee/login">Sign in as an employee.</a></p>
+	<h1>Fabflix Login</h1>
+
+	<form
+		action="/Fabflix/search" method="POST">
+		
+		Email: <input type="email" name="email" placeholder="username@host.com" autofocus required><br>
+		Password: <input type="password" name="password" placeholder="Password" required><br>
+		<input type="submit" value="Login">
+		<input type="hidden" name="enter" value="true">
+		<input type="hidden" name="userName" value="true">
+	</form>
+
+</body>
+
+</html>

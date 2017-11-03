@@ -1,0 +1,17 @@
+body {
+	background-color: #818181;
+	color: #000000;
+}
+<<<<<<< .mine
+=======
+
+>>>>>>> .r89
+th, td
+{
+	border: 1px solid black;
+	text-align: center;
+}
+
+input {
+	text-align: center;
+}

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="http://java.sun.com/xml/ns/javaee"
+      xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+        id="WebApp_ID" version="2.5">
+        
+    <display-name>Fabflix</display-name>
+    
+	<!-- JDBC Connection Pooling -->
+	<resource-ref>
+		<description>
+			Resource reference to a factory for java.sql.Connection
+			instances that may be used for talking to a particular
+			database that is configured in the server.xml file.
+		</description>
+		
+		<res-ref-name>
+			jdbc/moviedb
+		</res-ref-name>
+		
+		<res-type>
+			javax.sql.DataSource
+		</res-type>
+		
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	
+	<!-- Static HTML Files -->
+	<welcome-file-list>
+		<welcome-file>Login.html</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Check (Customer) Authorization Filter -->
+	<filter>
+	    <filter-name>CheckAuth</filter-name>
+	    <filter-class>CheckAuth</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>CheckAuth</filter-name>
+	    <url-pattern>/search</url-pattern>
+	    <url-pattern>/logout</url-pattern>
+	    <!-- <url-pattern>/movielist</url-pattern>
+	    <url-pattern>/details</url-pattern>
+	    <url-pattern>/cart</url-pattern>
+	    <url-pattern>/checkout</url-pattern>
+	    <url-pattern>/confirm</url-pattern>
+	    <url-pattern>/servlet/TextSearch</url-pattern>-->
+	</filter-mapping>
+	
+	<!-- Login Results Servlet -->
+	<servlet>
+		<servlet-name>LoggedIn</servlet-name>
+		<servlet-class>Fabflix</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoggedIn</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Logout Servlet -->
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>Logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Results Servlet -->
+	<servlet>
+	    <servlet-name>MovieList</servlet-name>
+	    <servlet-class>MovieList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>MovieList</servlet-name>
+	    <url-pattern>/movielist</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Ajax Movie PopUp Detail -->
+	<servlet>
+	    <servlet-name>ToolTip</servlet-name>
+	    <servlet-class>MovieToolTip</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ToolTip</servlet-name>
+	    <url-pattern>/tooltip</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Single Movie/Star Servlet -->
+	<servlet>
+	    <servlet-name>Details</servlet-name>
+	    <servlet-class>Details</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Details</servlet-name>
+	    <url-pattern>/details</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Shopping Cart Servlet -->
+	<servlet>
+	    <servlet-name>Shopping</servlet-name>
+	    <servlet-class>ShoppingCart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Shopping</servlet-name>
+	    <url-pattern>/cart</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Customer Information and Checkout Servlet -->
+	<servlet>
+	    <servlet-name>CheckOut</servlet-name>
+	    <servlet-class>Checkout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>CheckOut</servlet-name>
+	    <url-pattern>/checkout</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Order Confirmation Servlet -->
+	<servlet>
+	    <servlet-name>ConfirmOrder</servlet-name>
+	    <servlet-class>Confirmation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ConfirmOrder</servlet-name>
+	    <url-pattern>/confirm</url-pattern>
+	</servlet-mapping>	
+	
+	
+	<!-- Check (Employee) Authorization Filter 
+	<filter>
+	    <filter-name>EmpAuth</filter-name>
+	    <filter-class>CheckEAuth</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>EmpAuth</filter-name>
+	    <url-pattern>/employee/*</url-pattern>
+	</filter-mapping>
+	-->
+
+	<!-- Employee Login -->
+	<servlet>
+	    <servlet-name>EmpLogin</servlet-name>
+	    <servlet-class>EmpLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>EmpLogin</servlet-name>
+	    <url-pattern>/employee/login</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Employee Menu -->
+	<servlet>
+	    <servlet-name>EmpMenu</servlet-name>
+	    <servlet-class>EmpMenu</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>EmpMenu</servlet-name>
+	    <url-pattern>/employee/menu</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>AddMovie</servlet-name>
+	    <servlet-class>AddMovie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>AddMovie</servlet-name>
+	    <url-pattern>/employee/addMovie</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>Report</servlet-name>
+	    <servlet-class>Report</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Report</servlet-name>
+	    <url-pattern>/employee/report</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>UMGui</servlet-name>
+	    <servlet-class>UMGui</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>UMGui</servlet-name>
+	    <url-pattern>/employee/userManagement</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>UPMGui</servlet-name>
+	    <servlet-class>UPMGui</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>UPMGui</servlet-name>
+	    <url-pattern>/employee/userPrivileges</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>Query</servlet-name>
+	    <servlet-class>QueryPrivileges</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Query</servlet-name>
+	    <url-pattern>/employee/queryResults</url-pattern>
+	</servlet-mapping>
+	
+	<!--  -->	
+	<servlet>
+	    <servlet-name>TextSearch</servlet-name>
+	    <servlet-class>TextSearch</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TextSearch</servlet-name>
+	    <url-pattern>/servlet/TextSearch</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
